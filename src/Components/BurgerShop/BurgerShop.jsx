@@ -5,14 +5,13 @@ import { ingredients } from '../../data/burger-data'
 import { useState } from 'react'
 
 const BurgerShop = () => {
-  console.log(ingredients)
   const [stack, setStack] = useState([])
 
-  const addToBurger = ingredient => {
+  const addToBurger = (ingredient) => {
     setStack([...stack, ingredient ])
   }
-  const removeFromBurger = idx => {
-    setStack(stack.filter((ingredient,ingredientIdx) => ingredientIdx !== idx))
+  const removeFromBurger = (idx) => {
+    setStack(stack.filter((ing, i) => i !== idx))
   }
   
   return (
@@ -22,8 +21,14 @@ const BurgerShop = () => {
         <button onClick={() => setStack([])}>Clear Order</button>
         </nav>
       <section>
-        <IngredientList ingredients = {ingredients} addToBurger={addToBurger}/>
-        <BurgerStack stack= {ingredients}removeFromBurger={removeFromBurger}/>
+        <IngredientList 
+        ingredients = {ingredients} 
+        addToBurger={addToBurger}
+        />
+        <BurgerStack 
+        stack= {stack}
+        removeFromBurger={removeFromBurger}
+        />
       </section>
     </div>
   )
